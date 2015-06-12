@@ -1,0 +1,18 @@
+﻿<Window x:Class="TouchInfoPoint.PhotoViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Photo" Height="400" Width="700"
+        WindowStyle="None" AllowsTransparency="True" WindowState="Maximized" Loaded="Window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Opacity="0"/>
+    </Window.Background>
+    <Grid>
+        <Border x:Name="OutBorder" BorderBrush="Black" Background="Black" Opacity="0.4" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="650" Height="370" MouseUp="OutBorder_MouseUp"/>
+        <Border x:Name="CenterBorder" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="Black" BorderThickness="1" >
+            <StackPanel Orientation="Vertical" Margin="3">
+                <Label x:Name="Lbl_photo" Content="Luis" FontFamily="Segoe WP Semibold" FontSize="36" FontWeight="Bold" Foreground="#FF1A5193"/>
+                <Image x:Name="myPhoto"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
