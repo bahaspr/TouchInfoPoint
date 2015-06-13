@@ -48,7 +48,7 @@ namespace DataManger
                     Formats = new string[] { "*.pdf" };
                     break;
                 case ListType.Video:
-                    Formats = new string[] { "*.avi", "*.wmv", "*.flv" };
+                    Formats = new string[] { "*.avi", "*.wmv", "*.flv", "*.mp4" };
                     break;
                 default:
                     Formats = new string[] { "*.*" };

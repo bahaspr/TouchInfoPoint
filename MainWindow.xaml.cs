@@ -67,7 +67,7 @@ namespace TouchInfoPoint
             Lbl_Time.Content = DateTime.Now.ToString("dd/MM  HH:mm:ss");
         }
 
-        //Static Functions
+        //Utils Functions
         public void AppLauncher(AppsModules ApptoLaunch, string AppPath)
         {
             ListType ListType;
@@ -86,6 +86,9 @@ namespace TouchInfoPoint
                     break;
                 case AppsModules.Maps:
                     ListType = DataManger.ListType.Maps;
+                    break;
+                case AppsModules.Voting:
+                    ListType = DataManger.ListType.Voting;
                     break;
                 default:
                     ListType = DataManger.ListType.None;
@@ -120,9 +123,28 @@ namespace TouchInfoPoint
             Canvas1.Height = ScreenH;
             Canvas1.Width = ScreenW;
 
+            //Check Directories
+            if (!Directory.Exists(@"MainData"))
+            {
+                Lbl_Home.Content = "ERROR - [MainData] Directory not found";
+                return;
+            }
+            if (!Directory.Exists(@"MainData\Menus"))
+            {
+                Lbl_Home.Content = "ERROR - [Menus] Directory not found";
+                return;
+            }
+
             //Get Files from Folder
             string[] FilePaths = Directory.GetFiles(@"MainData\Menus\", "*.png");
             NumImg = FilePaths.Length;
+
+            //Check numbers of Icons
+            if (NumImg < 1)
+            {
+                Lbl_Home.Content = "ERROR - No icons in [Menus] Directory";
+                return;
+            }
 
             //Create the Array with the Menu Images
             MenuImg = new Image[NumImg];
@@ -204,8 +226,6 @@ namespace TouchInfoPoint
                 }
             }
 
-            Lbl_MousePos.Content = string.Format("Mouse {0},{1} [{2} | {3}]", pt.X, pt.Y, altPos.X - pt.X, altPos.Y - pt.Y);
-
             //Save the currento position
             altPos = pt;
         }
@@ -254,9 +274,6 @@ namespace TouchInfoPoint
 
             if ((Math.Abs(pt.X) > TouchAbsVal) || (Math.Abs(pt.Y) > TouchAbsVal))
                 return;
-
-            //Actions for Click Event
-            Lbl_Home.Content = MenuImg.Name;
 
             //Validation for each Icon - App
             switch (MenuImg.Name)

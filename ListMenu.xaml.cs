@@ -23,15 +23,15 @@ namespace TouchInfoPoint
     /// </summary>
     public partial class ListMenu : Window
     {
-        string[] DirectoryPaths;
-        AppsModules CurrentModul;
-        int SelModul;
-
+        List<string> DirectoryPaths;
+        
         Point Entrypt;
         int ListWidth = 481;
         bool ImgClick = false;
 
-        ListType myType;
+        ListType myType;                //List Type used to put the correct Icon in the List
+        AppsModules CurrentModul;       //Current Modul, that use the List System Menu
+        int SelModul;                   //Which Icon was Clicked
 
         public ListMenu(string DataPath, AppsModules Modul, ListType Type)
         {
@@ -40,7 +40,7 @@ namespace TouchInfoPoint
             if (Type == ListType.Folder)
             {
                 //Search all Directories
-                DirectoryPaths = Directory.GetDirectories(DataPath);
+                DirectoryPaths = Directory.GetDirectories(DataPath).ToList();
             }
             else if (Type == ListType.None)
             {
@@ -48,8 +48,10 @@ namespace TouchInfoPoint
             }
             else
             {
+                DirectoryPaths = new List<string>();
                 //Search all Files
-                DirectoryPaths = Directory.GetFiles(DataPath, FileMgr.GetFileFormats(Type)[0]);
+                for(int x=0; x < FileMgr.GetFileFormats(Type).Length; x++)
+                    DirectoryPaths.AddRange(Directory.GetFiles(DataPath, FileMgr.GetFileFormats(Type)[x]).ToList());
             }
 
             //Copy the Option Information
@@ -93,7 +95,7 @@ namespace TouchInfoPoint
             get
             {
                 if (DirectoryPaths != null)
-                    return DirectoryPaths.Length;
+                    return DirectoryPaths.Count;
                 else
                     return 0;
             }
@@ -119,11 +121,19 @@ namespace TouchInfoPoint
             FilePanel.Margin = new Thickness(5);
 
             //Image for list
-            Image NewImg;
-            if (myType == ListType.Folder)
-                NewImg = ImgManger.LoadImageFromFile("folder.png", "MainData\\", 96, 96, "");
-            else
-                NewImg = ImgManger.LoadImageFromFile("pdf.png", "MainData\\", 96, 96, "");
+            Image NewImg = null;
+            switch(myType)
+            {
+                case ListType.Folder:
+                    NewImg = ImgManger.LoadImageFromFile("folder.png", "MainData\\", 96, 96, "");
+                    break;
+                case ListType.PDF:
+                    NewImg = ImgManger.LoadImageFromFile("pdf.png", "MainData\\", 96, 96, "");
+                    break;
+                case ListType.Video:
+                    NewImg = ImgManger.LoadImageFromFile("video.png", "MainData\\", 96, 96, "");
+                    break;
+            }
 
             //Create Label
             Label FolderLabel = GUIMgr.CreateLabel(name);
@@ -143,8 +153,8 @@ namespace TouchInfoPoint
 
             //Set Title
             Lbl_List.Content = CurrentModul.ToString();
-            
-            if (DirectoryPaths.Length < 1)
+
+            if (DirectoryPaths.Count < 1)
             {
                 //Error Message - NO FILES
                 CenterBorder.Child = GUIMgr.CreateLabel("NO FILES IN DIRECTORY", 42, Colors.Black);
@@ -157,7 +167,7 @@ namespace TouchInfoPoint
                 CenterBorder.Height = SystemParameters.PrimaryScreenHeight * 0.7812;
 
                 //Load Images for Menu
-                for (int x = 0; x < DirectoryPaths.Length; x++)
+                for (int x = 0; x < DirectoryPaths.Count; x++)
                 {
                     //Get Folder Name
                     string[] strsplit = DirectoryPaths[x].Split('\\');

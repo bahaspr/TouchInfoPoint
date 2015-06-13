@@ -7,8 +7,7 @@
         Loaded="Window_Loaded">
     <Grid>
         <Canvas x:Name="Canvas1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="760" Width="1358" MouseDown="Canvas1_MouseDown" MouseMove="Canvas1_MouseMove" MouseUp="Canvas1_MouseUp" MouseLeave="Canvas1_MouseLeave">
-            <Label x:Name="Lbl_Home" Content="Home" Canvas.Left="22" Canvas.Top="19" Width="309" Background="{x:Null}" FontFamily="Segoe WP Semibold" FontSize="36" FontWeight="Bold" Foreground="#FF1A5193"/>
-            <Label x:Name="Lbl_MousePos" Content="Home" Canvas.Left="974" Canvas.Top="501" Width="308" Background="{x:Null}" FontFamily="Segoe WP Semibold" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right"/>      
+            <Label x:Name="Lbl_Home" Content="Home" Canvas.Left="22" Canvas.Top="19" Width="823" Background="{x:Null}" FontFamily="Segoe WP Semibold" FontSize="36" FontWeight="Bold" Foreground="#FF1A5193"/>
         </Canvas>
         <Image x:Name="Img_Logo" HorizontalAlignment="Right" Height="70" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="100" Source="Image/Logo.png" MouseDown="Img_Logo_MouseDown"/>
         <Rectangle Height="68" Stroke="White" HorizontalAlignment="Right" VerticalAlignment="Top" Width="317" RadiusY="9.5" RadiusX="9.5" Opacity="0.3" Margin="0,31,-11,0">
