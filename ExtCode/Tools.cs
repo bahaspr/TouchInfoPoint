@@ -27,8 +27,36 @@ namespace DataManger
     public enum ListType
     {
         Folder,
-        Files,
+        PDF,
+        Video,
+        Audio,
+        Image,
+        Maps,
+        Voting,
         None
+    }
+
+    class FileMgr
+    {
+        public static string[] GetFileFormats(ListType type)
+        {
+            string[] Formats;
+
+            switch (type)
+            {
+                case ListType.PDF:
+                    Formats = new string[] { "*.pdf" };
+                    break;
+                case ListType.Video:
+                    Formats = new string[] { "*.avi", "*.wmv", "*.flv" };
+                    break;
+                default:
+                    Formats = new string[] { "*.*" };
+                    break;
+            }
+
+            return Formats;
+        }
     }
 
     class ImgManger

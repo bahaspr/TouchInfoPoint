@@ -71,30 +71,28 @@ namespace TouchInfoPoint
         public void AppLauncher(AppsModules ApptoLaunch, string AppPath)
         {
             ListType ListType;
-            string FileFormat;
             
             switch (ApptoLaunch)
             {
                 case AppsModules.Gallery:
                     ListType = DataManger.ListType.Folder;
-                    FileFormat = "";
                     break;
                 case AppsModules.PDFFlip:
                 case AppsModules.PDFList:
-                    ListType = DataManger.ListType.Files;
-                    FileFormat = "*.pdf";
+                    ListType = DataManger.ListType.PDF;
                     break;
                 case AppsModules.Video:
-                    ListType = DataManger.ListType.Files;
-                    FileFormat = "*.avi";
+                    ListType = DataManger.ListType.Video;
+                    break;
+                case AppsModules.Maps:
+                    ListType = DataManger.ListType.Maps;
                     break;
                 default:
                     ListType = DataManger.ListType.None;
-                    FileFormat = "";
                     break;
             }
 
-            ListMenu ListForm = new ListMenu(AppPath, ApptoLaunch, ListType, FileFormat);
+            ListMenu ListForm = new ListMenu(AppPath, ApptoLaunch, ListType);
             if ((ListForm.DirCount != 1) && (ListType != DataManger.ListType.None))
                 ListForm.Show();
             else

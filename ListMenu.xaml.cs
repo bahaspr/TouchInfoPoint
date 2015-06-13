@@ -33,7 +33,7 @@ namespace TouchInfoPoint
 
         ListType myType;
 
-        public ListMenu(string DataPath, AppsModules Modul, ListType Type, string FileFormat)
+        public ListMenu(string DataPath, AppsModules Modul, ListType Type)
         {
             InitializeComponent();
 
@@ -42,10 +42,14 @@ namespace TouchInfoPoint
                 //Search all Directories
                 DirectoryPaths = Directory.GetDirectories(DataPath);
             }
-            else if(Type == ListType.Files)
+            else if (Type == ListType.None)
+            {
+                //Dummy
+            }
+            else
             {
                 //Search all Files
-                DirectoryPaths = Directory.GetFiles(DataPath, FileFormat);
+                DirectoryPaths = Directory.GetFiles(DataPath, FileMgr.GetFileFormats(Type)[0]);
             }
 
             //Copy the Option Information
@@ -71,6 +75,14 @@ namespace TouchInfoPoint
                 case AppsModules.Gallery:
                     Gallery GalleryForm = new Gallery(DirectoryPaths[SelModul]);
                     GalleryForm.Show();
+                    break;
+                case AppsModules.Maps:
+                    Maps MapsForm = new Maps(DirectoryPaths[SelModul]);
+                    MapsForm.Show();
+                    break;
+                case AppsModules.Video:
+                    VideoViewer VideoForm = new VideoViewer(DirectoryPaths[SelModul]);
+                    VideoForm.Show();
                     break;
             } 
         }
