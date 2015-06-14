@@ -26,7 +26,6 @@ namespace TouchInfoPoint
         List<string> DirectoryPaths;
         
         Point Entrypt;
-        int ListWidth = 481;
         bool ImgClick = false;
 
         ListType myType;                //List Type used to put the correct Icon in the List
@@ -65,7 +64,7 @@ namespace TouchInfoPoint
         public void Launch()
         {
             //Close Windows
-            this.Close();
+            //this.Close();
             
             //Call the App
             switch (CurrentModul)
@@ -191,7 +190,7 @@ namespace TouchInfoPoint
 
             //Cast from Object to Image and change the Width
             Border MenuImg = (Border)sender;
-            MenuImg.Width = ListWidth - 15;
+            MenuImg.Margin = GUIMgr.ThicknessSmall();
             //Active the Click Flag for Imagen
             ImgClick = true;
         }
@@ -207,7 +206,7 @@ namespace TouchInfoPoint
 
             //Cast from Object to Image and change the Width
             Border MenuImg = (Border)sender;
-            MenuImg.Width = ListWidth;
+            MenuImg.Margin = GUIMgr.ThicknessBig();
 
             //Validation from Movement in X and Y
             Point pt = e.GetPosition(this);
@@ -228,7 +227,7 @@ namespace TouchInfoPoint
             if (ImgClick == true)
             {
                 Border MenuImg = (Border)sender;
-                MenuImg.Width = ListWidth;
+                MenuImg.Margin = GUIMgr.ThicknessBig();
                 ImgClick = false;
             }
         }

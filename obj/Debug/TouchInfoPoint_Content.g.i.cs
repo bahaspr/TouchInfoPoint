@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("touch.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/close.png")]
 
 

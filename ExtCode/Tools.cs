@@ -162,5 +162,15 @@ namespace DataManger
 
             return myLabel;
         }
+
+        public static Thickness ThicknessBig()
+        {
+            return new Thickness(20, 15, 20, 10);
+        }
+
+        public static Thickness ThicknessSmall()
+        {
+            return new Thickness(30, 15, 30, 10);
+        }
     }
 }
