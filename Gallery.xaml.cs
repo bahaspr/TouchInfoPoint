@@ -28,6 +28,9 @@ namespace TouchInfoPoint
     {
         IEnumerable PhotoGallery;
         string ImgDirectory;
+
+        TouchPoint altPos;
+        double ActualScrollPos = 0;
         
         public Gallery(string DirectoryPath)
         {
@@ -73,12 +76,12 @@ namespace TouchInfoPoint
 
             ListBoxGallery.ItemsSource = PhotoGallery;
 
-            //Set the name of the picture
+            //Set the name of the Gallery
             string[] DataAux = ImgDirectory.Split('\\');
             Lbl_Home.Content = "Gallery: " + DataAux[DataAux.Length - 1];
         }
 
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
@@ -87,6 +90,24 @@ namespace TouchInfoPoint
         {
             PhotoViewer phWind = new PhotoViewer((Photo)ListBoxGallery.SelectedItem);
             phWind.Show();
+        }
+
+        private void ListBoxGallery_TouchDown(object sender, TouchEventArgs e)
+        {
+            altPos = e.GetTouchPoint(this);
+            ActualScrollPos = MyScroll.HorizontalOffset;
+        }
+
+        private void ListBoxGallery_TouchMove(object sender, TouchEventArgs e)
+        {
+            TouchPoint pt = e.GetTouchPoint(this);
+            double RealPos = pt.Position.X - altPos.Position.X;
+
+            if (RealPos != 0)
+            {
+                //Validation from Begin and End the Screen
+                MyScroll.ScrollToHorizontalOffset(ActualScrollPos - RealPos);
+            }
         }
     }
 }

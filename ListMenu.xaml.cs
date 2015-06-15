@@ -24,7 +24,9 @@ namespace TouchInfoPoint
     public partial class ListMenu : Window
     {
         List<string> DirectoryPaths;
-        
+
+        TouchPoint TouchaltPos;
+        double ActualScrollPos = 0;
         Point Entrypt;
         bool ImgClick = false;
 
@@ -150,6 +152,8 @@ namespace TouchInfoPoint
             OutBorder.Width = SystemParameters.PrimaryScreenWidth;
             OutBorder.Height = SystemParameters.PrimaryScreenHeight;
 
+            ButtonStack.Background = ImgManger.LoadImageFromFile("Background.png", "MainData\\");
+
             //Set Title
             Lbl_List.Content = CurrentModul.ToString();
 
@@ -237,6 +241,26 @@ namespace TouchInfoPoint
         private void OutBorder_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        /************* Scrollbar CallBak ***************/
+
+        private void ButtonStack_TouchDown(object sender, TouchEventArgs e)
+        {
+            TouchaltPos = e.GetTouchPoint(this);
+            ActualScrollPos = MyScroll.VerticalOffset;
+        }
+
+        private void ButtonStack_TouchMove(object sender, TouchEventArgs e)
+        {
+            TouchPoint pt = e.GetTouchPoint(this);
+            double RealPosY = pt.Position.Y - TouchaltPos.Position.Y;
+
+            if (RealPosY != 0)
+            {
+                //Validation from Begin and End the Screen
+                MyScroll.ScrollToVerticalOffset(ActualScrollPos - RealPosY);
+            }
         }
 
 #endregion

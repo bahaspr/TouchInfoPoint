@@ -21,7 +21,7 @@
                     </Border.BitmapEffect>
                 </Border>
                 <!-- Image Template / Img + Name -->
-                <Border Background="White" BorderBrush="Black" BorderThickness="1" Width="200" Height="140">
+                <Border x:Name="ImgBorder" Background="White" BorderBrush="Black" BorderThickness="1" Width="400" Height="280">
                     <StackPanel Orientation="Vertical" Margin="3">
                         <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                         <Image Source="{Binding Thumbnail}"/>
@@ -44,10 +44,10 @@
     </Window.Resources>
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Margin="32,60,120,0">
-            <ListBox x:Name="ListBoxGallery" ItemTemplate="{StaticResource PhotoTemplate}" Style="{StaticResource GalleryStyle}" MouseDoubleClick="ListBoxGallery_MouseDoubleClick"  Margin="0,0,0,0" />
+        <ScrollViewer x:Name="MyScroll" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Margin="32,60,120,0">
+            <ListBox x:Name="ListBoxGallery" ItemTemplate="{StaticResource PhotoTemplate}" Style="{StaticResource GalleryStyle}" MouseDoubleClick="ListBoxGallery_MouseDoubleClick"  Margin="0,0,0,0" TouchDown="ListBoxGallery_TouchDown" TouchMove="ListBoxGallery_TouchMove" />
         </ScrollViewer>
-        <Image HorizontalAlignment="Right" Height="100" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Source="Image/Back.png" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Right" Height="100" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Source="Image/Back.png" MouseUp="Image_MouseUp"/>
         <Label x:Name="Lbl_Home" Content="Gallery" Background="{x:Null}" FontFamily="Segoe WP Semibold" FontSize="36" FontWeight="Bold" Foreground="#FF1A5193" Margin="22,10,588,696"/>
     </Grid>
 </Window>

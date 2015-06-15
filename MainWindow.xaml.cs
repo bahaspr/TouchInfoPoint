@@ -191,7 +191,6 @@ namespace TouchInfoPoint
             Point pt = e.GetPosition(this);
             double RealPos = pt.X - altPos.X;
             double RealPosY = pt.Y - altPos.Y;
-            //RealPosY = -1;
 
             if (CanvasClick == true)
             {

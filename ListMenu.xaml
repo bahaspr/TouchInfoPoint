@@ -12,8 +12,8 @@
         <Border x:Name="CenterBorder" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="Black" BorderThickness="1" Width="600" Height="300">
             <DockPanel LastChildFill="True">
                 <Label x:Name="Lbl_List" DockPanel.Dock="Left" Content="List" Margin="20, 10, 0, 0" FontFamily="Segoe WP Semibold" FontSize="36" FontWeight="Bold" Foreground="#FF1A5193"/>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="ButtonStack" Margin="10,10,10,10" VerticalAlignment="Top"/>
+                <ScrollViewer x:Name="MyScroll" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="ButtonStack" Margin="10,10,10,10" VerticalAlignment="Top" TouchDown="ButtonStack_TouchDown" TouchMove="ButtonStack_TouchMove"/>
                 </ScrollViewer>
             </DockPanel>
         </Border>

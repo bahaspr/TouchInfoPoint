@@ -23,3 +23,4 @@ C:\Users\luisalejandro\Documents\Visual Studio 2012\Projects\TouchInfoPoint\Touc
 C:\Users\luisalejandro\Documents\Visual Studio 2012\Projects\TouchInfoPoint\TouchInfoPoint\obj\Debug\VideoViewer.baml
 C:\Users\luisalejandro\Documents\Visual Studio 2012\Projects\TouchInfoPoint\TouchInfoPoint\obj\Debug\Maps.g.cs
 C:\Users\luisalejandro\Documents\Visual Studio 2012\Projects\TouchInfoPoint\TouchInfoPoint\obj\Debug\VideoViewer.g.cs
+C:\Users\luisalejandro\Documents\Visual Studio 2012\Projects\TouchInfoPoint\TouchInfoPoint\obj\Debug\TouchInfoPoint.csprojResolveAssemblyReference.cache
